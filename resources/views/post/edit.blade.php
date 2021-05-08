@@ -32,6 +32,22 @@
         @enderror
       </div>
 
+      <div class="field">
+        <label class="label">Category</label>
+
+        <div class="control">
+          <div class="select @error('category_id')is-danger @enderror">
+            <select name="category_id" value="{{ $post->category_id ?? old('category_id') }}">
+              @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
+        @error('category_id')
+          <p class="help is-danger">{{ $message }}</p>
+        @enderror
+      </div>
 
 
       <div class="field">

@@ -1,11 +1,11 @@
 <x-layouts.app>
-  <section class="hero is-large" style="background-color: #333">
+  <section class="hero is-medium" style="background-color: #333">
     <div class="container">
       <div class="hero-body has-text-centered">
-        <p class="title has-text-white" >
+        <p class="title" style="color: darkorange" >
           {{ $post->title }}
         </p>
-        <p class="subtitle has-text-white">
+        <p class="subtitle" style="color: darkorange">
           Essam, is the author
         </p>
       </div>

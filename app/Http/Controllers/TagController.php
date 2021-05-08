@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -54,7 +55,9 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+        $tags = Tag::all();
+        $post = Post::all();
+        return view('tag.show', ['tags'=>  $tags, 'post' => $post] );
     }
 
     /**
@@ -65,7 +68,8 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return view('tag.edit',['tag' => $tag]);
+
     }
 
     /**
@@ -77,7 +81,14 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:2|max:30',
+            'slug' => 'required|min:2|max:30',
+        ]);
+
+        $tag->update($request->all());
+
+        return redirect()->route('tags.index' );
     }
 
     /**
@@ -88,6 +99,9 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+
+        return redirect()->route('tags.index');
+
     }
 }

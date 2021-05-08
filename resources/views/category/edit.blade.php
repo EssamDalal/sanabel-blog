@@ -2,7 +2,7 @@
 
   <section class="container" style="margin-bottom: 30px;margin-top: 100px">
     <div class="title is-3">Edit {{ $category->name }}</div>
-    <form action="/categories/{category}" method="POST">
+    <form action="/categories/{{ $category->id }}" method="POST">
       @csrf
       <input type="hidden" name="_method" value="PUT">
       <div class="field">

@@ -77,16 +77,17 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Category $category , Request $request)
     {
-        $category = Category::findOrFail($category);
 
-        $category = Category::create(['name' => $request->name,'icon'=> $request->icon]);
+        $request->validate([
+            'name'  => 'required|min:4|max:255',
+            'icon'  => 'required|url',
+        ]);
 
-        return redirect("/categories/{$category->id}");
+        $category->update($request->all());
 
-
-
+        return redirect()->route('categories.show', $category);
     }
 
     /**
@@ -97,6 +98,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('categories.index');
+
     }
 }
