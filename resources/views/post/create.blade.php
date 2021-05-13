@@ -15,6 +15,16 @@
       </div>
 
       <div class="field">
+        <label class="label">Slug</label>
+        <div class="control">
+          <input class="input @error('slug')is-danger @enderror" value="{{ old('slug')  }}" type="text" placeholder="Post slug" name="slug">
+        </div>
+        @error('slug')
+          <p class="help is-danger">{{ $message }}</p>
+        @enderror
+      </div>
+
+      <div class="field">
         <label class="label">Tags</label>
 
         <div class="control">

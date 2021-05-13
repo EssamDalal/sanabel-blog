@@ -19,7 +19,7 @@
                                 style="color: darkorange;font-size: 25px">{{ $posts->count() }}</span></p>
                     </div>
                 </section>
-                <section class="container mb-6 mt-6">
+                <section class="container m-6">
                     <div class="columns is-multiline ">
                         @foreach ($posts as $post)
                             <div class="column is-one-third">
@@ -31,9 +31,14 @@
                                     </div>
                                     <div class="card-content">
                                         <div class="media">
-                                            <div class="media-content">
+                                            <div class="level">
+                                                <div class="media-content">
                                                 <p class="title is-4">{{ $post->title }}</p>
+                                                @foreach ($post->tags as $tag)
+                                                    <span class="tag is-warning">{{ $tag->name }}</span>
+                                                @endforeach
 
+                                            </div>
                                             </div>
                                         </div>
                                         <div class="content">
@@ -42,9 +47,7 @@
                                             <time datetime="2016-1-1">{{ $post->created_at }}</time>
                                         </div>
                                         <div class="m-5">
-                                            @foreach ($post->tags as $tag)
-                                                <span class="tag is-warning">{{ $tag->name }}</span>
-                                            @endforeach
+
                                         </div>
 
                                         <div class="buttons">
@@ -70,14 +73,11 @@
                                 </div>
                             </div>
                         @endforeach
-                        <div class="column is-12">
-                            <div class="buttons is-centered">
-                                <a href="{{ route('posts.index') }}" class="button is-primary">See all posts</a>
-                            </div>
-                        </div>
+                        <div class="column is-12">{{ $posts->links() }}</div>
                     </div>
                 </section>
             </section>
+        </section>
     </div>
 
 </x-layouts.app>
